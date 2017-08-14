@@ -8,6 +8,10 @@
  */
 
 /**
+ * I've prefixed every function with rtsa(Rtcamp Slideshow Assignment) to avoid possible namespace collisions
+ */ 
+ 
+/**
  * Displays HTML on plugin setting page
  *
  * @return void
@@ -27,7 +31,20 @@ function rtsa_settings_page_html()
 
 function rtsa_settings_page()
 {
-    add_options_page('rtCamp Slideshow Plugin', 'Slideshow', 'manage_options', 'Slideshow1', 'rtsa_settings_page_html');
+    add_options_page('rtCamp Slideshow Plugin', 'rtsa', 'manage_options', 'rtsa', 'rtsa_settings_page_html');
 }
 
+function rtsa_shortcodes_init()
+{
+    function rtsa_shortcode($atts = [], $content = null)
+    {
+        // do something to $content
+        $content .= '<h1>Hello World</h1>';
+        // always return
+        return $content;
+    }
+    add_shortcode('rtsa', 'rtsa_shortcode');    
+}
+
+add_action('init', 'rtsa_shortcodes_init');
 add_action('admin_menu', 'rtsa_settings_page');

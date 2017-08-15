@@ -1,0 +1,41 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="node_modules/lightslider/dist/css/lightslider.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script src="node_modules/lightslider/dist/js/lightslider.js"></script>
+    </head>
+    <body>
+        <div class="clearfix" style="max-width:600px;">
+            <ul id="lightSlider" class="gallery list-unstyled">
+                <li data-thumb="http://localhost/app/uploads/2017/08/photo-1494877711077-1f6b3197b7b1-150x150.jpg">
+                    <img src="http://localhost/app/uploads/2017/08/photo-1494877711077-1f6b3197b7b1.jpg" width="600px;" alt="">
+                </li>
+                <li data-thumb="http://localhost/app/uploads/2017/08/photo-1480997214622-2ed3527b94b4-150x150.jpg">
+                    <img src="http://localhost/app/uploads/2017/08/photo-1480997214622-2ed3527b94b4.jpg" width="600px;" alt="">
+                </li>
+                <li data-thumb="http://localhost/app/uploads/2017/08/photo-1494877711077-1f6b3197b7b1-150x150.jpg">
+                    <img src="http://localhost/app/uploads/2017/08/photo-1494877711077-1f6b3197b7b1.jpg" width="600px;" alt="">
+                </li>
+                <li data-thumb="http://localhost/app/uploads/2017/08/photo-1494877711077-1f6b3197b7b1-150x150.jpg">
+                    <img src="http://localhost/app/uploads/2017/08/photo-1494877711077-1f6b3197b7b1.jpg" width="600px;" alt="">
+                </li>
+            </ul>
+        </div>
+        <script type="text/javascript">
+            $(document).ready(function() {
+              var slider = $("#lightSlider").lightSlider({
+                gallery:true,
+                item:1,
+                // adaptiveHeight:true,
+                // autoWidth:true,
+                thumbItem:9,
+                slideMargin: 0,
+                speed:500,
+                auto:true,
+                loop:true,
+              }); 
+              slider.play();
+            });
+          </script>
+    </body>
+</html>

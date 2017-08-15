@@ -51,11 +51,23 @@ function rtsa_settings_page_html()
     <?php
 }
 
+// Function to print slider
 function rtsa_slider_preview() {
-    // Print HTML code of slider
+    $images = get_option('rtsa_images');
+    echo '<div style="max-width:600px;"><ul id="lightSlider">';
+    if($images)
+    {
+        foreach($images as $image)
+        {
+            $thumb_url = wp_get_attachment_thumb_url($image);
+            $url = wp_get_attachment_url($image);
+            echo "<li data-thumb='$thumb_url'><img class='slider-items' src='$url' width='600px'/></li>";
+        }
+    }
+    echo '</ul></div>';
 }
 
-// Function to display images
+// Function to display images in "Images section"
 function rtsa_display_images() {
     $images = get_option('rtsa_images');
     echo '<ul id="sortable">';
@@ -123,10 +135,14 @@ add_action('wp_ajax_rtsa_update_images','rtsa_ajax_update_images');
 
 function rtsa_register_scripts()
 {
-    wp_register_script('rtsa-slider-script', plugins_url('/rtcamp-slideshow-script.js', __FILE__ ), array('jquery', 'jquery-ui-core'));
+    wp_register_script('rtsa-slider-script', plugins_url('/node_modules/lightslider/dist/js/lightslider.min.js', __FILE__ ), array('jquery'));
     wp_enqueue_script('rtsa-slider-script');
+    wp_register_script('rtsa-script', plugins_url('/rtcamp-slideshow-script.js', __FILE__ ), array('jquery', 'jquery-ui-core', 'rtsa-slider-script'));
+    wp_enqueue_script('rtsa-script');
 
-    wp_register_style('rtsa-slider-style', plugins_url('/rtcamp-slideshow-style.css', __FILE__ ));
+    wp_register_style('rtsa-slider-style', plugins_url('/node_modules/lightslider/dist/css/lightslider.min.css', __FILE__ ));
     wp_enqueue_style('rtsa-slider-style');
+    wp_register_style('rtsa-style', plugins_url('/rtcamp-slideshow-style.css', __FILE__ ));
+    wp_enqueue_style('rtsa-style');
 }
 add_action('admin_enqueue_scripts', 'rtsa_register_scripts');

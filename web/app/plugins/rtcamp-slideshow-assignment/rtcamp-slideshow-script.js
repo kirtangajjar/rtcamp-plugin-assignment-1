@@ -4,6 +4,17 @@ jQuery(document).ready(function($){
         $( "#sortable" ).disableSelection();
     });
 
+    $("#lightSlider").lightSlider({
+        pager: true,
+        gallery:true,
+        item:1,
+        thumbItem:9,
+        slideMargin: 0,
+        speed:500,
+        auto:true,
+        loop:true,
+    });
+    
     $('#save-btn').click(function(e){
         var images = [];
         $('#sortable > li').each(function(){

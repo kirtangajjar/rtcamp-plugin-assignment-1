@@ -41,57 +41,9 @@ function rtsa_settings_page_html()
     </div>
 </div>
 <style>
-  #sortable { list-style-type: none; display: inline-block}
-  #sortable li { margin: 3px 3px 0 0; 
-  /* padding: 1px;  */
-  float: left; }
+
 </style>
 <script type="text/javascript">
-jQuery(document).ready(function($){
-$( function() {
-    $( "#sortable" ).sortable();
-    $( "#sortable" ).disableSelection();
-} );
-    $('#upload-btn').click(function(e) {
-        e.preventDefault();
-        frame = wp.media({ 
-            title: 'Select Image',
-            multiple: true
-        });
-        frame.on('open', function () {
-            // var selection = frame.state().get('selection');
-            // ids = jQuery('#my_field_id').val().split(',');
-            
-            // ids.forEach(function(id) {
-            //     attachment = wp.media.attachment(id);
-            //     attachment.fetch();
-            //     selection.add( attachment ? [ attachment ] : [] );
-            // });
-        }).open()
-        .on('select', function(e){
-            // This will return the selected image from the Media Uploader, the result is an array
-            var selected_images = frame.state().get('selection');
-            // We convert uploaded_image to a JSON object to make accessing it easier
-            // Output to the console uploaded_image
-            console.log(selected_images.toJSON());
-            $('#sortable').empty();            
-            selected_images.forEach(function(image){
-                console.log(image);
-                var img = $("<img />").attr('src', image.attributes.sizes.thumbnail.url)
-                .on('load', function() {
-                    if (!this.complete || typeof this.naturalWidth == "undefined" || this.naturalWidth == 0) {
-                        alert('broken image!');
-                    } else {
-                        var item = ` <li class="ui-state-default">${img[0].outerHTML}</li>`;
-                        $('#sortable').append(item);
-                        // $("#something").append(img);
-                    }
-                });
-
-            })
-        });
-    });
-});
 </script>
     
     <?php
@@ -101,16 +53,21 @@ function rtsa_slider_preview() {
     // Print HTML code of slider
 }
 
+// Function to display images
 function rtsa_display_images() {
 
 }
 
+// Function called at the beggining of the script 
 function rtsa_settings_page()
 {
+    // register_setting('rtsa', 'rtsa_images');
+    
     add_settings_section('rtsa_preview', 'Slider Preview', 'rtsa_slider_preview', 'rtsa' );
     add_settings_section('rtsa_images', 'Images', 'rtsa_display_images', 'rtsa' );
     add_options_page('rtCamp Slideshow Plugin', 'rtsa', 'manage_options', 'rtsa', 'rtsa_settings_page_html');
 }
+add_action('admin_menu', 'rtsa_settings_page');
 
 function rtsa_shortcodes_init()
 {
@@ -123,6 +80,22 @@ function rtsa_shortcodes_init()
     }
     add_shortcode('rtsa', 'rtsa_shortcode');    
 }
-
 add_action('init', 'rtsa_shortcodes_init');
-add_action('admin_menu', 'rtsa_settings_page');
+
+// Function to handle AJAX Update image request
+function rtsa_ajax_update_images()
+{
+    echo 'In here!';
+    wp_die();
+}
+add_action('wp_ajax_rtsa_update_images','rtsa_ajax_update_images');
+
+function rtsa_register_scripts()
+{
+    wp_register_script('rtsa-slider-script', plugins_url('/rtcamp-slideshow-script.js', __FILE__ ), array('jquery', 'jquery-ui-core'));
+    wp_enqueue_script('rtsa-slider-script');
+
+    wp_register_style('rtsa-slider-style', plugins_url('/rtcamp-slideshow-style.css', __FILE__ ));
+    wp_enqueue_style('rtsa-slider-style');
+}
+add_action('admin_enqueue_scripts', 'rtsa_register_scripts');

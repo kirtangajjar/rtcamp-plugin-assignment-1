@@ -13,6 +13,7 @@ jQuery(document).ready(function($){
         $( "#sortable" ).sortable({
             update: function(e,u){ 
                 render_slideshow();
+                display_warning_message()
             }
         });
         $( "#sortable" ).disableSelection();
@@ -38,15 +39,15 @@ jQuery(document).ready(function($){
             nonce: rtsa.nonce,
             action: 'rtsa_update_images'
         };
-        $.post(wp.ajax.settings.url, data);
-        
-        // TODO: Add success message
 
-        // .done(function(data) {
-        //     $('.wrap > h1').after( `<div id="success-message" class="notice notice-success is-dismissible">
-        //     <p>All prefrences saved</p>
-        // <button type="button" class="notice-dismiss"><span class="screen-reader-text">Dismiss this notice.</span></button></div>`) 
-        // });
+        // Add listener to dismiss notices
+        $('body').on('click','button.notice-dismiss', function(){
+            console.log($(this).parent().remove());
+        })
+
+        $.post(wp.ajax.settings.url, data).done(function(data) {
+            display_success_message();
+        });
     });
 
     // Opens wordpress media manager when user  
@@ -73,6 +74,7 @@ jQuery(document).ready(function($){
             // This will return the selected image from the Media Uploader, the result is an array
             var selected_images = frame.state().get('selection');
             render_images(selected_images);
+            display_warning_message();            
         });
     });
 
@@ -105,5 +107,28 @@ jQuery(document).ready(function($){
             image_ids.push($(this).attr('data-id'));
         });
         return image_ids;
+    }
+
+    function display_success_message() {
+        $('#success-message').remove()
+        $('#warning-message').remove()
+        $('.wrap > h1').after(`
+        <div id="success-message" class="notice notice-success is-dismissible">
+            <p>All prefrences saved</p>
+            <button type="button" class="notice-dismiss">
+                <span class="screen-reader-text">Dismiss this notice.</span>
+            </button>
+        </div>`);
+    }
+    function display_warning_message() {
+        $('#success-message').remove()
+        $('#warning-message').remove()
+        $('.wrap > h1').after(`
+        <div id="warning-message" class="notice notice-warning is-dismissible">
+            <p>Do remember to save your changes by pressing 'Save' button</p>
+            <button type="button" class="notice-dismiss">
+                <span class="screen-reader-text">Dismiss this notice.</span>
+            </button>
+        </div>`);
     }
 });

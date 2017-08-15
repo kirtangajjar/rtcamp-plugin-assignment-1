@@ -52,7 +52,7 @@ function rtsa_settings_page_html()
 }
 
 // Function to print slider
-function rtsa_slider_preview() {
+function rtsa_display_slider() {
     $images = get_option('rtsa_images');
     echo '<div id="slider-container" style="max-width:600px;"><ul id="lightSlider">';
     if($images)
@@ -90,7 +90,7 @@ function rtsa_settings_page()
 {
     // register_setting('rtsa', 'rtsa_images');
     
-    add_settings_section('rtsa_preview', 'Slider Live Preview', 'rtsa_slider_preview', 'rtsa' );
+    add_settings_section('rtsa_preview', 'Slider Live Preview', 'rtsa_display_slider', 'rtsa' );
     add_settings_section('rtsa_images', 'Images', 'rtsa_display_images', 'rtsa' );
     add_options_page('rtCamp Slideshow Plugin', 'rtsa', 'manage_options', 'rtsa', 'rtsa_settings_page_html');
 }
@@ -101,7 +101,7 @@ function rtsa_shortcodes_init()
     function rtsa_shortcode($atts = [], $content = null)
     {
         // do something to $content
-        $content .= '<h1>Hello World</h1>';
+        $content .= rtsa_display_slider();
         // always return
         return $content;
     }
@@ -113,7 +113,7 @@ add_action('init', 'rtsa_shortcodes_init');
 function rtsa_ajax_update_images()
 {
     check_ajax_referer('rtsa_ajax_nonce','nonce');
-    
+
     $images = $_POST['images'];
     if(isset($images) && gettype($images) === 'array' && rtsa_validate_ints($images))
     {
@@ -151,4 +151,5 @@ function rtsa_register_scripts()
         'nonce' => wp_create_nonce('rtsa_ajax_nonce')        
     ));
 }
+add_action('wp_enqueue_scripts', 'rtsa_register_scripts');
 add_action('admin_enqueue_scripts', 'rtsa_register_scripts');

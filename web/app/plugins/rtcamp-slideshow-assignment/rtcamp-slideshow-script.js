@@ -83,7 +83,7 @@ jQuery(document).ready(function($){
         $('#slider-container').empty();
         $('#slider-container').append('<ul id="lightSlider"></ul>');
         $('#sortable > li').each(function(){
-            $('#lightSlider').append(`<li data-thumb="${$(this).attr('data-thumbnail')}"><img class="slider-items" src="${$(this).attr('data-fullsize')}" width="600px"/></li>`)
+            $('#lightSlider').append(`<li data-thumb="${$(this).attr('data-thumbnail')}"><img class="slider-items" src="${$(this).attr('data-fullsize')}" width='100%' style='max-width:600px'/></li>`)
         });
         $("#lightSlider").lightSlider(slider_options);
     }

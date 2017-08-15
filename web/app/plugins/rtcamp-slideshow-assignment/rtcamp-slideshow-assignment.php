@@ -61,7 +61,7 @@ function rtsa_display_slider() {
         {
             $thumb_url = wp_get_attachment_thumb_url($image);
             $url = wp_get_attachment_url($image);
-            echo "<li data-thumb='$thumb_url'><img class='slider-items' src='$url' width='600px'/></li>";
+            echo "<li data-thumb='$thumb_url'><img class='slider-items' src='$url' width='100%' style='max-width:600px'/></li>";
         }
     }
     echo '</ul></div>';

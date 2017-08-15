@@ -34,8 +34,9 @@ jQuery(document).ready(function($){
     
     $('#save-btn').click(function(e){
         var data = {
-            'images': get_selected_images_id(),
-            'action': 'rtsa_update_images'
+            images: get_selected_images_id(),
+            nonce: rtsa.nonce,
+            action: 'rtsa_update_images'
         };
         $.post(wp.ajax.settings.url, data);
         

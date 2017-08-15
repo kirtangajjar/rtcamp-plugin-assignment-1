@@ -112,6 +112,8 @@ add_action('init', 'rtsa_shortcodes_init');
 // Function to handle AJAX Update image request
 function rtsa_ajax_update_images()
 {
+    check_ajax_referer('rtsa_ajax_nonce','nonce');
+    
     $images = $_POST['images'];
     if(isset($images) && gettype($images) === 'array' && rtsa_validate_ints($images))
     {
@@ -144,5 +146,9 @@ function rtsa_register_scripts()
     wp_enqueue_style('rtsa-slider-style');
     wp_register_style('rtsa-style', plugins_url('/rtcamp-slideshow-style.css', __FILE__ ));
     wp_enqueue_style('rtsa-style');
+
+    wp_localize_script('rtsa-script','rtsa', array(
+        'nonce' => wp_create_nonce('rtsa_ajax_nonce')        
+    ));
 }
 add_action('admin_enqueue_scripts', 'rtsa_register_scripts');

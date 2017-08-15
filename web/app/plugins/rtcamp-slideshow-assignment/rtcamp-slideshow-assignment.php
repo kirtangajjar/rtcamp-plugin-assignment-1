@@ -33,12 +33,14 @@ function rtsa_settings_page_html()
     <?php
         do_settings_sections('rtsa');
     ?>
-    <ul id="sortable">
-    </ul>
+
     <div>
         <input type="button" name="save-btn" id="save-btn" class="button-primary" value="Save">
         <input type="button" name="upload-btn" id="upload-btn" class="button-secondary" value="Add New Images">
     </div>
+    <!-- <div id="success-message" class="notice notice-success is-dismissible">
+        <p>asd</p>
+    </div> -->
 </div>
 <style>
 
@@ -55,7 +57,20 @@ function rtsa_slider_preview() {
 
 // Function to display images
 function rtsa_display_images() {
-
+    $images = get_option('rtsa_images');
+    echo '<ul id="sortable">';
+    if($images)
+    {
+        
+        foreach($images as $image)
+        {
+            $url = wp_get_attachment_thumb_url($image);
+            echo "<li class='ui-state-default' data-id='$image'>
+            <img src='$url' />
+            </li>";
+        }
+    }
+    echo '</ul>';
 }
 
 // Function called at the beggining of the script 
@@ -85,8 +100,24 @@ add_action('init', 'rtsa_shortcodes_init');
 // Function to handle AJAX Update image request
 function rtsa_ajax_update_images()
 {
-    echo 'In here!';
+    $images = $_POST['images'];
+    if(isset($images) && gettype($images) === 'array' && rtsa_validate_ints($images))
+    {
+        update_option('rtsa_images', $images);
+    }    
     wp_die();
+}
+// function to validate integers
+function rtsa_validate_ints($images)
+{
+    foreach($images as $image)
+    {
+        $result = intval($image) ? true : false;
+        
+        if($result === false)
+            return false;
+    }
+    return true;
 }
 add_action('wp_ajax_rtsa_update_images','rtsa_ajax_update_images');
 

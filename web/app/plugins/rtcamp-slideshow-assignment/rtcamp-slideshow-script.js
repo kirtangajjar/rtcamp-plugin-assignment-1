@@ -3,6 +3,28 @@ jQuery(document).ready(function($){
         $( "#sortable" ).sortable();
         $( "#sortable" ).disableSelection();
     });
+
+    $('#save-btn').click(function(e){
+        var images = [];
+        $('#sortable > li').each(function(){
+            images.push($(this).attr('data-id'));
+        });
+        console.log(images);
+        var data = {
+            'images': images,
+            'action': 'rtsa_update_images'
+        };
+        $.post(wp.ajax.settings.url, data);
+        
+        // TODO: Add success message
+
+        // .done(function(data) {
+        //     $('.wrap > h1').after( `<div id="success-message" class="notice notice-success is-dismissible">
+        //     <p>All prefrences saved</p>
+        // <button type="button" class="notice-dismiss"><span class="screen-reader-text">Dismiss this notice.</span></button></div>`) 
+        // });
+    });
+
     $('#upload-btn').click(function(e) {
         e.preventDefault();
         frame = wp.media({ 
@@ -20,20 +42,20 @@ jQuery(document).ready(function($){
             // });
         }).open()
         .on('select', function(e){
+            $('#sortable').empty();            
             // This will return the selected image from the Media Uploader, the result is an array
             var selected_images = frame.state().get('selection');
-            // We convert uploaded_image to a JSON object to make accessing it easier
-            // Output to the console uploaded_image
+            
             console.log(selected_images.toJSON());
-            $('#sortable').empty();            
+            
             selected_images.forEach(function(image){
-                console.log(image);
+                // console.log(image);
                 var img = $("<img />").attr('src', image.attributes.sizes.thumbnail.url)
                 .on('load', function() {
                     if (!this.complete || typeof this.naturalWidth == "undefined" || this.naturalWidth == 0) {
-                        alert('broken image!');
+                        alert('received broken image!');
                     } else {
-                        var item = ` <li class="ui-state-default">${img[0].outerHTML}</li>`;
+                        var item = `<li class="ui-state-default" data-id="${image.id}">${img[0].outerHTML}</li>`;
                         $('#sortable').append(item);
                         // $("#something").append(img);
                     }

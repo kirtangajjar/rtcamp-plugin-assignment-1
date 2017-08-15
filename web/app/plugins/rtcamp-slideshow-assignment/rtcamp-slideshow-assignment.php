@@ -54,7 +54,7 @@ function rtsa_settings_page_html()
 // Function to print slider
 function rtsa_slider_preview() {
     $images = get_option('rtsa_images');
-    echo '<div style="max-width:600px;"><ul id="lightSlider">';
+    echo '<div id="slider-container" style="max-width:600px;"><ul id="lightSlider">';
     if($images)
     {
         foreach($images as $image)
@@ -73,12 +73,12 @@ function rtsa_display_images() {
     echo '<ul id="sortable">';
     if($images)
     {
-        
         foreach($images as $image)
         {
-            $url = wp_get_attachment_thumb_url($image);
-            echo "<li class='ui-state-default' data-id='$image'>
-            <img src='$url' />
+            $thumb_url = wp_get_attachment_thumb_url($image);
+            $fullsize_url = wp_get_attachment_url($image);
+            echo "<li class='ui-state-default' data-id='$image' data-thumbnail='$thumb_url' data-fullsize='$fullsize_url'>
+            <img src='$thumb_url' />
             </li>";
         }
     }
@@ -90,7 +90,7 @@ function rtsa_settings_page()
 {
     // register_setting('rtsa', 'rtsa_images');
     
-    add_settings_section('rtsa_preview', 'Slider Preview', 'rtsa_slider_preview', 'rtsa' );
+    add_settings_section('rtsa_preview', 'Slider Live Preview', 'rtsa_slider_preview', 'rtsa' );
     add_settings_section('rtsa_images', 'Images', 'rtsa_display_images', 'rtsa' );
     add_options_page('rtCamp Slideshow Plugin', 'rtsa', 'manage_options', 'rtsa', 'rtsa_settings_page_html');
 }

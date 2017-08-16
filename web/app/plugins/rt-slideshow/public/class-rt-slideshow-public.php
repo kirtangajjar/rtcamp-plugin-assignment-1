@@ -1,5 +1,4 @@
 <?php
-
 /**
  * The public-facing functionality of the plugin.
  *
@@ -44,8 +43,8 @@ class Rt_Slideshow_Public {
 	 * Initialize the class and set its properties.
 	 *
 	 * @since    1.0.0
-	 * @param      string    $plugin_name       The name of the plugin.
-	 * @param      string    $version    The version of this plugin.
+	 * @param      string $plugin_name       The name of the plugin.
+	 * @param      string $version    The version of this plugin.
 	 */
 	public function __construct( $plugin_name, $version ) {
 
@@ -75,34 +74,42 @@ class Rt_Slideshow_Public {
 	}
 
 		/**
-		* Register the JavaScript for the public-facing side of the site.
-		*
-		* @since    1.0.0
-		*/
+   * Register the JavaScript for the public-facing side of the site.
+   *
+   * @since    1.0.0
+   */
 	public function enqueue_scripts() {
 
 		/**
-			* An instance of this class should be passed to the run() function
-			* defined in Rt_Slideshow_Loader as all of the hooks are defined
-			* in that particular class.
-			*
-			* The Rt_Slideshow_Loader will then create the relationship
-			* between the defined hooks and the functions defined in this
-			* class.
-			*/
+		 * An instance of this class should be passed to the run() function
+		 * defined in Rt_Slideshow_Loader as all of the hooks are defined
+		 * in that particular class.
+		 *
+		 * The Rt_Slideshow_Loader will then create the relationship
+		 * between the defined hooks and the functions defined in this
+		 * class.
+		 */
 
 		wp_enqueue_script( 'jquery' );
 		wp_enqueue_script( $this->plugin_name . '-dependency-slider', plugins_url( '../node_modules/lightslider/dist/js/lightslider.min.js', __FILE__ ), array( 'jquery' ) );
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/rt-slideshow-public.js', array( 'jquery', 'jquery-ui-core', 'jquery-ui-sortable' ) );
 	}
 
-		/**
-		* Register the JavaScript for the public-facing side of the site.
-		*
-		* @since    1.0.0
-		*/
+	/**
+	 * Register the JavaScript for the public-facing side of the site.
+	 *
+	 * @since    1.0.0
+	 */
 	public function register_shortcode() {
 
+		/**
+		 * Displays slider when shortcode is called.
+   *
+		 * @param      array  $atts       The attributes provied to shortcode.
+		 * @param      string $content    The content to display.
+		 *
+		 * @since    1.0.0
+		 */
 		function shortcode( $atts = [], $content = null ) {
 
 			$content .= self::display_slider();
@@ -115,10 +122,10 @@ class Rt_Slideshow_Public {
 	}
 
 		/**
-		* Displays slider whenever called.
-		*
-		* @since    1.0.0
-		*/
+   * Displays slider whenever called.
+   *
+   * @since    1.0.0
+   */
 	public static function display_slider() {
 
 		include_once 'partials/rt-slideshow-slider.php';

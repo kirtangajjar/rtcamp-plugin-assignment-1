@@ -1,5 +1,4 @@
 <?php
-
 /**
  * The admin-specific functionality of the plugin.
  *
@@ -20,7 +19,7 @@
  * @subpackage Rt_Slideshow/admin
  * @author     Kirtan Gajjar <kirtangajjar95@gmail.com>
  */
-class Rt_Slideshow_Admin {
+ class Rt_Slideshow_Admin {
 
 	/**
 	 * The ID of this plugin.
@@ -44,8 +43,8 @@ class Rt_Slideshow_Admin {
 	 * Initialize the class and set its properties.
 	 *
 	 * @since    1.0.0
-	 * @param      string    $plugin_name       The name of this plugin.
-	 * @param      string    $version    The version of this plugin.
+	 * @param      string $plugin_name       The name of this plugin.
+	 * @param      string $version    The version of this plugin.
 	 */
 	public function __construct( $plugin_name, $version ) {
 
@@ -97,7 +96,7 @@ class Rt_Slideshow_Admin {
 		* class.
 		*/
 
-		wp_enqueue_media();     // Enqueues WordPress media manager
+		wp_enqueue_media();     // Enqueues WordPress media manager.
 
 		wp_enqueue_script( $this->plugin_name . '-dependency-slider', plugins_url( '../node_modules/lightslider/dist/js/lightslider.min.js', __FILE__ ), array( 'jquery' ) );
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/rt-slideshow-admin.js', array( 'jquery', 'jquery-ui-core', 'jquery-ui-sortable' ) );
@@ -162,10 +161,10 @@ class Rt_Slideshow_Admin {
 	}
 
 	/**
-	* Displays slider whenever called.
-	*
-	* @since    1.0.0
-	*/
+  * Displays slider whenever called.
+  *
+  * @since    1.0.0
+  */
 	public function display_slider_section() {
 
 		include_once dirname( __FILE__, 2 ) . '/public/partials/rt-slideshow-slider.php';
@@ -173,10 +172,10 @@ class Rt_Slideshow_Admin {
 	}
 
 	/**
-	* Displays slider whenever called.
-	*
-	* @since    1.0.0
-	*/
+  * Displays slider whenever called.
+  *
+  * @since    1.0.0
+  */
 	public function display_images_section() {
 
 		include_once 'partials/rt-slideshow-admin-display-images.php';
@@ -198,15 +197,15 @@ class Rt_Slideshow_Admin {
 		wp_die();
 	}
 
-
 	/**
 	 * Function to validate integers in array
-	 *
+  *
+	 * @param      array $arr    The version of this plugin.
 	 * @since  1.0.0
 	 */
-	private function validate_ints_in_array( $images ) {
-		foreach ( $images as $image ) {
-			$result = intval( $image ) ? true : false;
+	private function validate_ints_in_array( $arr ) {
+		foreach ( $arr as $ele ) {
+			$result = intval( $ele ) ? true : false;
 
 			if ( false === $result ) {
 				return false;

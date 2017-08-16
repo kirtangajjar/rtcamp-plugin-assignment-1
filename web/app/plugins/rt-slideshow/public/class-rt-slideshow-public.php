@@ -62,8 +62,6 @@ class Rt_Slideshow_Public {
 	public function enqueue_styles() {
 
 		/**
-		 * This function is provided for demonstration purposes only.
-		 *
 		 * An instance of this class should be passed to the run() function
 		 * defined in Rt_Slideshow_Loader as all of the hooks are defined
 		 * in that particular class.
@@ -73,31 +71,58 @@ class Rt_Slideshow_Public {
 		 * class.
 		 */
 
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/rt-slideshow-public.css', array(), $this->version, 'all' );
-
-	}
-
-	/**
-	 * Register the JavaScript for the public-facing side of the site.
-	 *
-	 * @since    1.0.0
-	 */
-	public function enqueue_scripts() {
+			wp_enqueue_style( $this->plugin_name, plugins_url( '../node_modules/lightslider/dist/css/lightslider.min.css', __FILE__ ), array(), $this->version, 'all'  );
+		}
+		
+		/**
+		* Register the JavaScript for the public-facing side of the site.
+		*
+		* @since    1.0.0
+		*/
+		public function enqueue_scripts() {
+			
+			/**
+			* An instance of this class should be passed to the run() function
+			* defined in Rt_Slideshow_Loader as all of the hooks are defined
+			* in that particular class.
+			*
+			* The Rt_Slideshow_Loader will then create the relationship
+			* between the defined hooks and the functions defined in this
+			* class.
+			*/
+			
+			wp_enqueue_script( 'jquery' );
+			wp_enqueue_script( $this->plugin_name.'-dependency-slider', plugins_url( '../node_modules/lightslider/dist/js/lightslider.min.js', __FILE__ ), array( 'jquery' ));
+			wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/rt-slideshow-public.js', array( 'jquery', 'jquery-ui-core', 'jquery-ui-sortable' ) );
+		}
 
 		/**
-		 * This function is provided for demonstration purposes only.
-		 *
-		 * An instance of this class should be passed to the run() function
-		 * defined in Rt_Slideshow_Loader as all of the hooks are defined
-		 * in that particular class.
-		 *
-		 * The Rt_Slideshow_Loader will then create the relationship
-		 * between the defined hooks and the functions defined in this
-		 * class.
-		 */
+		* Register the JavaScript for the public-facing side of the site.
+		*
+		* @since    1.0.0
+		*/
+		public function register_shortcode() {
 
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/rt-slideshow-public.js', array( 'jquery' ), $this->version, false );
+			function shortcode( $atts = [], $content = null ) {
 
-	}
+				$content .= Rt_Slideshow_Public::display_slider();
+				return $content;
 
+			}
+
+			add_shortcode( 'rt-slideshow', 'shortcode' );
+
+		}
+		
+		/**
+		* Displays slider whenever called.
+		*
+		* @since    1.0.0
+		*/
+		public static function display_slider() {
+
+			include_once 'partials/rt-slideshow-slider.php';
+
+		}
+			
 }

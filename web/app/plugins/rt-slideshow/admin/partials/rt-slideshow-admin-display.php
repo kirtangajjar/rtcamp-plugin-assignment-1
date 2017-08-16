@@ -13,4 +13,11 @@
  */
 ?>
 
-<!-- This file should primarily consist of HTML with a little bit of PHP. -->
+<div class="wrap">
+	<h1><?php echo esc_html( get_admin_page_title() ); ?></h1>
+	<?php do_settings_sections( $this->plugin_name ); ?>
+	<div>
+		<input type="button" name="save-btn" id="save-btn" class="button-primary" value="Save">
+		<input type="button" name="upload-btn" id="upload-btn" class="button-secondary" value="Add New Images">
+	</div>
+</div>

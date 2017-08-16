@@ -1,8 +1,0 @@
-#sortable { 
-    list-style-type: none; 
-    display: inline-block
-}
-#sortable li { 
-    margin: 3px 3px 0 0; 
-    float: left; 
-}

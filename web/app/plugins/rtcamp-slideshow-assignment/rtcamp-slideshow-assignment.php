@@ -54,7 +54,19 @@ function rtsa_display_slider() {
 		foreach ( $images as $image ) {
 			$thumb_url = wp_get_attachment_thumb_url( $image );
 			$url = wp_get_attachment_url( $image );
-			echo wp_kses_post( "<li data-thumb='$thumb_url'><img class='slider-items' src='$url' width='100%' style='max-width:600px'/></li>" );
+			echo wp_kses(
+				"<li data-thumb='$thumb_url'><img class='slider-items' src='$url' width='100%' style='max-width:600px'/></li>", array(
+					'li' => array(
+						'data-thumb' => array(),
+					),
+					'img' => array(
+						'src' => array(),
+						'class' => array(),
+						'width' => array(),
+						'style' => array(),
+					),
+				)
+			);
 		}
 	}
 	echo '</ul></div>';
@@ -68,7 +80,19 @@ function rtsa_display_images() {
 		foreach ( $images as $image ) {
 			$thumb_url = wp_get_attachment_thumb_url( $image );
 			$fullsize_url = wp_get_attachment_url( $image );
-			echo wp_kses_post( "<li class='ui-state-default' data-id='$image' data-thumbnail='$thumb_url' data-fullsize='$fullsize_url'><img src='$thumb_url' /></li>" );
+			echo wp_kses(
+				"<li class='ui-state-default' data-id='$image' data-thumbnail='$thumb_url' data-fullsize='$fullsize_url'><img src='$thumb_url' /></li>", array(
+					'li' => array(
+						'class' => array(),
+						'data-thumbnail' => array(),
+						'data-fullsize' => array(),
+						'data-id' => array(),
+					),
+					'img' => array(
+						'src' => array(),
+					),
+				)
+			);
 		}
 	}
 	echo '</ul>';

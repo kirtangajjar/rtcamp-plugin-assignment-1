@@ -73,18 +73,18 @@ class Rt_Slideshow_Admin {
 		 * class.
 		 */
 
-		 wp_enqueue_style( $this->plugin_name.'-dependency-slider', plugins_url( '../node_modules/lightslider/dist/css/lightslider.min.css', __FILE__ ) );
+		 wp_enqueue_style( $this->plugin_name . '-dependency-slider', plugins_url( '../node_modules/lightslider/dist/css/lightslider.min.css', __FILE__ ) );
 		 wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/rt-slideshow-admin.css', array(), $this->version, 'all' );
 
 	}
-		
+
 	/**
 	 * Register the JavaScript for the admin area.
 	 *
 	 * @since    1.0.0
 	 */
 	public function enqueue_scripts() {
-		
+
 		/**
 		* This function is provided for demonstration purposes only.
 		*
@@ -96,10 +96,10 @@ class Rt_Slideshow_Admin {
 		* between the defined hooks and the functions defined in this
 		* class.
 		*/
-		
-		wp_enqueue_media();		// Enqueues wordpress media manager 			
 
-		wp_enqueue_script( $this->plugin_name.'-dependency-slider', plugins_url( '../node_modules/lightslider/dist/js/lightslider.min.js', __FILE__ ), array( 'jquery' ) );
+		wp_enqueue_media();     // Enqueues WordPress media manager
+
+		wp_enqueue_script( $this->plugin_name . '-dependency-slider', plugins_url( '../node_modules/lightslider/dist/js/lightslider.min.js', __FILE__ ), array( 'jquery' ) );
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/rt-slideshow-admin.js', array( 'jquery', 'jquery-ui-core', 'jquery-ui-sortable' ) );
 
 		wp_localize_script(
@@ -118,12 +118,12 @@ class Rt_Slideshow_Admin {
 	public function add_options_page() {
 
 		 add_options_page(
-			__( 'rtCamp Slideshow Plugin', 'rt-slideshow' ),
-			__( 'rt-slideshow', 'rt-slideshow' ),
-			'manage_options',
-			$this->plugin_name,
-			array( $this, 'display_options_page' )
-		);
+			 __( 'rtCamp Slideshow Plugin', 'rt-slideshow' ),
+			 __( 'rt-slideshow', 'rt-slideshow' ),
+			 'manage_options',
+			 $this->plugin_name,
+			 array( $this, 'display_options_page' )
+		 );
 
 	}
 
@@ -137,14 +137,14 @@ class Rt_Slideshow_Admin {
 		add_settings_section(
 			'rtsa_preview',
 			__( 'Slider Live Preview', 'rt-slideshow' ),
-			array($this, 'display_slider_section'),
+			array( $this, 'display_slider_section' ),
 			$this->plugin_name
 		);
 
 		add_settings_section(
 			'rtsa_images',
 			__( 'Images', 'rt-slideshow' ),
-			array($this, 'display_images_section'),
+			array( $this, 'display_images_section' ),
 			$this->plugin_name
 		);
 
@@ -168,7 +168,7 @@ class Rt_Slideshow_Admin {
 	*/
 	public function display_slider_section() {
 
-		include_once dirname(__FILE__, 2).'/public/partials/rt-slideshow-slider.php';
+		include_once dirname( __FILE__, 2 ) . '/public/partials/rt-slideshow-slider.php';
 
 	}
 
@@ -188,7 +188,7 @@ class Rt_Slideshow_Admin {
 	 *
 	 * @since  1.0.0
 	 */
-	 public function ajax_update_images() {
+	public function ajax_update_images() {
 		check_ajax_referer( 'rt-slideshow-ajax-nonce','nonce' );
 
 		$images = $_POST['images'];
@@ -197,7 +197,7 @@ class Rt_Slideshow_Admin {
 		}
 		wp_die();
 	}
-	
+
 
 	/**
 	 * Function to validate integers in array

@@ -8,7 +8,9 @@ This is my submission for rtCamp Plugin Assignment(2-a)
 * [Bedrock](https://github.com/roots/bedrock)(not included in this repo)
 
 ## Features
-* **Live Preview** - See changes happen to your slider in real time as you add/remove/order images
+* **Upload Images** - Use the familiar WordPress Media Manager interface to add/remove images to your slider.
+* **Shortcode** - Embed the slider anywhere with `[rt-slideshow]` shortcode.
+* **Live Preview** - See changes happen to your slider in real time as you add/remove/order images.
 
 ## Installation
 

@@ -11,7 +11,13 @@
 
 	<!-- Show sniff codes in all reports -->
 	<arg value="s"/>
-
+	<rule ref="Squiz.Commenting.FileComment.SpacingAfterComment">
+		<severity>0</severity>
+	</rule>
+	<rule ref="PEAR.NamingConventions.ValidClassName.Invalid">
+		<severity>0</severity>
+	</rule>
 	<exclude-pattern>*/node_modules/*</exclude-pattern>
+	<exclude-pattern>index.php</exclude-pattern>
 	<exclude-pattern>*/vendor/*</exclude-pattern>
 </ruleset>

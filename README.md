@@ -2,12 +2,18 @@
 
 This is my submission for rtCamp Plugin Assignment(2-a)
 
+## Demo
+
+You can find the link to demo [here](http://rtcamp-plugin-assignment.000webhostapp.com/) 
+
 ## Libraries Used
+
 * [Lightslider](https://github.com/sachinchoolur/lightslider)
 * [WPBB Boilerplate](https://github.com/DevinVinson/WordPress-Plugin-Boilerplate)
 * [Bedrock](https://github.com/roots/bedrock)(not included in this repo)
 
 ## Features/Highlight
+
 * **Upload Images** - Use the familiar WordPress Media Manager interface to add/remove images to your slider.
 * **Shortcode** - Embed the slider anywhere with `[rt-slideshow]` shortcode.
 * **Live Preview** - See changes happen to your slider in real time as you add/remove/order images.

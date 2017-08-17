@@ -1,4 +1,5 @@
 # rtCamp Slideshow Assignment
+[![Build Status](https://travis-ci.org/kirtangajjar/rtcamp-plugin-assignment-1.svg?branch=master)](https://travis-ci.org/kirtangajjar/rtcamp-plugin-assignment-1)
 
 This is my submission for rtCamp Plugin Assignment(2-a)
 

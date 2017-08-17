@@ -7,16 +7,24 @@ This is my submission for rtCamp Plugin Assignment(2-a)
 * [WPBB Boilerplate](https://github.com/DevinVinson/WordPress-Plugin-Boilerplate)
 * [Bedrock](https://github.com/roots/bedrock)(not included in this repo)
 
-## Features
+## Features/Highlight
 * **Upload Images** - Use the familiar WordPress Media Manager interface to add/remove images to your slider.
 * **Shortcode** - Embed the slider anywhere with `[rt-slideshow]` shortcode.
 * **Live Preview** - See changes happen to your slider in real time as you add/remove/order images.
+* **Organized Code** - The code was written with `wpbb` boilerplate. As a result, it is highly organized and structured.
+* **Coding Standards** - The code was checked with PHPCS `Wordpress-Extra` and `Wordpress-Docs` ruleset and follows Wordpress Coding Standards as much as possible.
+* **Unit Test** - The code was also unit tested.
+* **Dependencies** - All the dependencies are managed through npm and stored in `node_moules` directory(which is ofcourse gitignored).
 
 ## Installation
 
-Simply clone the directory into your plugins folder with below command to get started with.
+Install the dependencies and clone the directory into your plugins folder with below command to get started.
 
-`git clone https://github.com/kirtangajjar/rtcamp-plugin-assignment-1 /path-to-plugins-folder/rt-slider`
+```
+git clone https://github.com/kirtangajjar/rtcamp-plugin-assignment-1 /path-to-plugins-folder/rt-slider
+cd /path-to-plugins-folder/rt-slider
+npm install
+```
 
 ## License
 

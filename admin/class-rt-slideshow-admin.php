@@ -19,7 +19,7 @@
  * @subpackage Rt_Slideshow/admin
  * @author     Kirtan Gajjar <kirtangajjar95@gmail.com>
  */
- class Rt_Slideshow_Admin {
+class Rt_Slideshow_Admin {
 
 	/**
 	 * The ID of this plugin.
@@ -161,10 +161,10 @@
 	}
 
 	/**
-  * Displays slider whenever called.
-  *
-  * @since    1.0.0
-  */
+	 * Displays slider whenever called.
+	 *
+	 * @since    1.0.0
+	 */
 	public function display_slider_section() {
 
 		include_once dirname( __FILE__, 2 ) . '/public/partials/rt-slideshow-slider.php';
@@ -172,10 +172,10 @@
 	}
 
 	/**
-  * Displays slider whenever called.
-  *
-  * @since    1.0.0
-  */
+	 * Displays slider whenever called.
+	 *
+	 * @since    1.0.0
+	 */
 	public function display_images_section() {
 
 		include_once 'partials/rt-slideshow-admin-display-images.php';
@@ -199,7 +199,7 @@
 
 	/**
 	 * Function to validate integers in array
-  *
+	 *
 	 * @param      array $arr    The version of this plugin.
 	 * @since  1.0.0
 	 */

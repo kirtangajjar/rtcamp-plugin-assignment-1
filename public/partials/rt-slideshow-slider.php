@@ -10,7 +10,7 @@
  * @package    Rt_Slideshow
  * @subpackage Rt_Slideshow/public/partials
  */
- 
+
 ?>
 
 <?php $images = get_option( 'rtsa_images' ); ?>

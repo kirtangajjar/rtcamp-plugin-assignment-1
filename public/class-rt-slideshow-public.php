@@ -74,10 +74,10 @@ class Rt_Slideshow_Public {
 	}
 
 		/**
-   * Register the JavaScript for the public-facing side of the site.
-   *
-   * @since    1.0.0
-   */
+		 * Register the JavaScript for the public-facing side of the site.
+		 *
+		 * @since    1.0.0
+		 */
 	public function enqueue_scripts() {
 
 		/**
@@ -104,7 +104,7 @@ class Rt_Slideshow_Public {
 
 		/**
 		 * Displays slider when shortcode is called.
-   *
+		 *
 		 * @param      array  $atts       The attributes provied to shortcode.
 		 * @param      string $content    The content to display.
 		 *
@@ -122,10 +122,10 @@ class Rt_Slideshow_Public {
 	}
 
 		/**
-   * Displays slider whenever called.
-   *
-   * @since    1.0.0
-   */
+		 * Displays slider whenever called.
+		 *
+		 * @since    1.0.0
+		 */
 	public static function display_slider() {
 
 		include_once 'partials/rt-slideshow-slider.php';

@@ -112,7 +112,7 @@ class Rt_Slideshow_Public {
 		 */
 		function shortcode( $atts = [], $content = null ) {
 
-			$content .= self::display_slider();
+			$content .= Rt_Slideshow_Public::display_slider();
 			return $content;
 
 		}

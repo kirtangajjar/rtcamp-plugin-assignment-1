@@ -52,7 +52,7 @@ script:
       phpunit
       WP_MULTISITE=1 phpunit
     fi
-  # - |
-  #   if [[ "$WP_TRAVISCI" == "phpcs" ]] ; then
-  #     phpcs
-  #   fi
+  - |
+    if [[ "$WP_TRAVISCI" == "phpcs" ]] ; then
+      phpcs --standard=phpcs.xml.dist
+    fi

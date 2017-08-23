@@ -32,7 +32,7 @@ class PluginAdminTest extends WP_UnitTestCase {
 	function setUp() {
 
 		require_once( 'admin/class-rt-slideshow-admin.php' );
-		$this->admin = new Rt_Slideshow_Admin( 'rt-slideshow', '1.0.1' );
+		$this->admin = new Rt_Slideshow_Admin( 'rt-slideshow', '1.0.0' );
 
 	}
 

@@ -70,7 +70,8 @@ class Rt_Slideshow_Public {
 		 * class.
 		 */
 
-			wp_enqueue_style( $this->plugin_name, plugins_url( '../node_modules/lightslider/dist/css/lightslider.min.css', __FILE__ ), array(), $this->version, 'all' );
+		wp_enqueue_style( $this->plugin_name . '-dependency-slider', plugins_url( '../node_modules/lightslider/dist/css/lightslider.min.css', __FILE__ ), array(), $this->version, 'all' );
+		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/rt-slideshow-public.css', array(), $this->version, 'all' );
 	}
 
 		/**

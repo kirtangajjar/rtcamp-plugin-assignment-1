@@ -129,8 +129,12 @@ class Rt_Slideshow_Public {
 		 */
 	public static function display_slider() {
 
+		// Start output buffering.
 		ob_start();
+
 		include_once 'partials/rt-slideshow-slider.php';
+
+		// End output buffer and return it.
 		return ob_get_clean();
 	}
 

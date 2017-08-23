@@ -129,8 +129,9 @@ class Rt_Slideshow_Public {
 		 */
 	public static function display_slider() {
 
+		ob_start();
 		include_once 'partials/rt-slideshow-slider.php';
-
+		return ob_get_clean();
 	}
 
 }

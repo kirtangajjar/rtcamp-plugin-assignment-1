@@ -15,26 +15,25 @@
 
 <?php $images = get_option( 'rtsa_images' ); ?>
 
-<div id="slider-container" style="max-width:600px;">
+<div id="rtsa-slider-container" style="max-width:600px;">
 	<ul id="lightSlider">
 		<?php
 		if ( $images ) {
 
 			foreach ( $images as $image ) {
 
-					$thumb_url = wp_get_attachment_thumb_url( $image );
+				$thumb_url = wp_get_attachment_thumb_url( $image );
 				$url = wp_get_attachment_url( $image );
 
-					?>
+		?>
 
 				<li data-thumb='<?php echo wp_kses_post( $thumb_url ); ?>'>
 					<img class='slider-items' src='<?php echo wp_kses_post( $url ); ?>' width='100%' style='max-width:600px' />
-					</li>
+				</li>
 
-						<?php
+		<?php
 			}
 		}
 		?>
 	</ul>
 </div>
-<!-- This file should primarily consist of HTML with a little bit of PHP. -->

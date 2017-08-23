@@ -22,6 +22,11 @@ jQuery( document ).ready( function( $ ) {
         loop: true
     };
 
+    // Add listener to dismiss notices
+    $( 'body' ).on( 'click', 'button.notice-dismiss', function() {
+        console.log( $( this ).parent().remove() );
+    });
+
     // Whenever the user reorders images, update the slideshow with it
     $( function() {
         $( '#sortable' ).sortable({
@@ -42,11 +47,6 @@ jQuery( document ).ready( function( $ ) {
             nonce: rtsa.nonce,
             action: 'rtsa_update_images'
         };
-
-        // Add listener to dismiss notices
-        $( 'body' ).on( 'click', 'button.notice-dismiss', function() {
-            console.log( $( this ).parent().remove() );
-        });
 
         $.post( wp.ajax.settings.url, data ).done( function( data ) {
             displaySuccessMessage();
@@ -85,8 +85,8 @@ jQuery( document ).ready( function( $ ) {
 
     // This functions renders slideshow in "Slider Live Preview" Section
     function renderSlideshow() {
-        $( '#slider-container' ).empty();
-        $( '#slider-container' ).append( '<ul id="lightSlider"></ul>' );
+        $( '#rtsa-slider-container' ).empty();
+        $( '#rtsa-slider-container' ).append( '<ul id="lightSlider"></ul>' );
         $( '#sortable > li' ).each( function() {
             $( '#lightSlider' ).append( `<li data-thumb="${ $( this ).attr( 'data-thumbnail' )}"><img class="slider-items" src="${ $( this ).attr( 'data-fullsize' )}" width='100%' style='max-width:600px'/></li>` );
         });

@@ -43,8 +43,8 @@ class Rt_Slideshow_Admin {
 	 * Initialize the class and set its properties.
 	 *
 	 * @since    1.0.0
-	 * @param      string $plugin_name       The name of this plugin.
-	 * @param      string $version    The version of this plugin.
+	 * @param    string $plugin_name       The name of this plugin.
+	 * @param    string $version    The version of this plugin.
 	 */
 	public function __construct( $plugin_name, $version ) {
 
@@ -112,7 +112,7 @@ class Rt_Slideshow_Admin {
 	/**
 	 * Adds an options page under the Settings submenu
 	 *
-	 * @since  1.0.0
+	 * @since    1.0.0
 	 */
 	public function add_options_page() {
 
@@ -129,7 +129,7 @@ class Rt_Slideshow_Admin {
 	/**
 	 * Adds an options page under the Settings submenu
 	 *
-	 * @since  1.0.0
+	 * @since    1.0.0
 	 */
 	public function add_settings_section() {
 
@@ -152,7 +152,7 @@ class Rt_Slideshow_Admin {
 	/**
 	 * Render the options page for plugin
 	 *
-	 * @since  1.0.0
+	 * @since    1.0.0
 	 */
 	public function display_options_page() {
 
@@ -185,7 +185,7 @@ class Rt_Slideshow_Admin {
 	/**
 	 * Function to handle AJAX Update image request
 	 *
-	 * @since  1.0.0
+	 * @since    1.0.0
 	 */
 	public function ajax_update_images() {
 		check_ajax_referer( 'rt-slideshow-ajax-nonce','nonce' );
@@ -200,8 +200,8 @@ class Rt_Slideshow_Admin {
 	/**
 	 * Function to validate integers in array
 	 *
-	 * @param      array $arr    The version of this plugin.
-	 * @since  1.0.0
+	 * @param    array $arr    The version of this plugin.
+	 * @since    1.0.0
 	 */
 	private function validate_ints_in_array( $arr ) {
 		foreach ( $arr as $ele ) {

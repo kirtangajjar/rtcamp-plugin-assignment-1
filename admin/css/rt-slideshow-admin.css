@@ -6,3 +6,11 @@
     margin: 3px 3px 0 0; 
     float: left; 
 }
+
+#rtsa-slider-container {
+    margin: auto;
+}
+
+.lSSlideOuter .lSGallery {
+    margin: auto !important;
+}
